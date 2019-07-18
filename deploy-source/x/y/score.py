@@ -11,9 +11,17 @@ from inference_schema.parameter_types.numpy_parameter_type import NumpyParameter
 
 def init():
     global model
+    
+    #DEBUG START
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+    from azureml.core.model import Model
+    print(Model.get_model_path(model_name='aml-deploy-test-regression'))
+    #DENUG END
+
     # note here "sklearn_regression_model.pkl" is the name of the model registered under
     # this is a different behavior than before when the code is run locally, even though the code is the same.
-    model_path = Model.get_model_path('sklearn_regression_model.pkl')
+    model_path = Model.get_model_path('aml-deploy-test-regression')
     # deserialize the model file back into a sklearn model
     model = joblib.load(model_path)
 

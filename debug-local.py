@@ -1,10 +1,12 @@
+#%% [markdown]
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 #%% [markdown]
 #Initialize Workspace
 from azureml.core import Workspace
 ws = Workspace.from_config()
 print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep = '\n')
-
 
 #%% [markdown]
 #Inference config
@@ -50,3 +52,4 @@ sample_input = json.dumps({
 sample_input = bytes(sample_input, encoding='utf-8')
 
 print(local_service.run(input_data=sample_input))
+
